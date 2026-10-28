@@ -1,0 +1,14 @@
+<section>
+  @if (isLoggedIn) {
+    <p>Welcome, {{ username }}!</p>
+    <img
+    (click)="greet()" src="https://github.com/{{ username }}.png" alt="photo">
+    <br>
+    <button (click)="isLoggedIn = false">Log out</button>
+    <app-games [username]="username" />
+  } @else {
+    <p>Please log in.</p>
+    <input type="text" [(ngModel)]="username" placeholder="Username">
+    <button (click)="isLoggedIn = true">Log in</button>
+  }
+</section>
