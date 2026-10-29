@@ -1,5 +1,161 @@
-section{
-    max-width: 500px;
-    margin: 0 auto;
-    padding-top: 32px;
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.login {
+  max-width: 380px;
+  margin: 10vh auto 0;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.logo {
+  font-size: 40px;
+}
+
+.login h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.sub {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.login label {
+  text-align: left;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+.field:focus-within {
+  border-color: var(--accent);
+}
+
+.field input {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  outline: none;
+  background: none;
+  color: var(--text);
+  font: inherit;
+}
+
+.login .error {
+  margin: 0;
+  color: var(--red);
+  font-size: 14px;
+}
+
+.login button {
+  margin-top: 6px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--bg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login button:disabled {
+  opacity: 0.6;
+}
+
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  cursor: pointer;
+}
+
+.info {
+  flex: 1;
+}
+
+.info p {
+  margin: 0;
+}
+
+.welcome {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.info a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.stats {
+  margin-top: 6px !important;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.logout {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.logout:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.favs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+  color: var(--muted);
+}
+
+.favs span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(245, 197, 66, 0.15);
+  color: var(--gold);
 }

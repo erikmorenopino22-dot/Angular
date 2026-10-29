@@ -1,14 +1,46 @@
 <section>
-  @if (isLoggedIn) {
-    <p>Welcome, {{ username }}!</p>
-    <img
-    (click)="greet()" src="https://github.com/{{ username }}.png" alt="photo">
-    <br>
-    <button (click)="isLoggedIn = false">Log out</button>
-    <app-games [username]="username" />
+  @if (isLoggedIn()) {
+    <div class="profile">
+      <img (click)="greet()" src="https://github.com/{{ username }}.png" alt="photo">
+      <div class="info">
+        <p class="welcome">Welcome, {{ githubUser().name || username }}!</p>
+        <a href="{{ githubUser().html_url }}" target="_blank">&#64;{{ githubUser().login }}</a>
+        <p class="stats">
+          {{ githubUser().public_repos }} repos · {{ githubUser().followers }} seguidores · {{ favGames.length }} favoritos
+        </p>
+      </div>
+      <button class="logout" (click)="logout()">Log out</button>
+    </div>
+
+    @if (favGames.length > 0) {
+      <p class="favs">
+        ⭐ Favoritos:
+        @for (game of favGames; track game) {
+          <span>{{ game }}</span>
+        }
+      </p>
+    }
+
+    <app-games (addFavoriteGame)="getfavoriteGame($event)" [username]="username"></app-games>
   } @else {
-    <p>Please log in.</p>
-    <input type="text" [(ngModel)]="username" placeholder="Username">
-    <button (click)="isLoggedIn = true">Log in</button>
+    <div class="login">
+      <span class="logo">🎲</span>
+      <h1>GameShelf</h1>
+      <p class="sub">Entra con tu usuario de GitHub, elige tus juegos y guarda tus favoritos.</p>
+
+      <label for="gh-user">Usuario de GitHub</label>
+      <div class="field">
+        <span>&#64;</span>
+        <input id="gh-user" type="text" [(ngModel)]="username" (keyup.enter)="login()" placeholder="tu-usuario">
+      </div>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <button (click)="login()" [disabled]="loading()">
+        {{ loading() ? 'Comprobando…' : 'Entrar' }}
+      </button>
+    </div>
   }
 </section>

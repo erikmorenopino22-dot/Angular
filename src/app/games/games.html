@@ -1,8 +1,26 @@
-<h3>Los juegos de {{ username() }}</h3>
+<div class="games-head">
+  <h3>Los juegos de {{ username() }}</h3>
+  <div class="tabs">
+    <button [class.active]="filter === 'todos'" (click)="filter = 'todos'">Todos</button>
+    <button [class.active]="filter === 'mios'" (click)="filter = 'mios'">Mis juegos ({{ myGames.length }})</button>
+    <button [class.active]="filter === 'favoritos'" (click)="filter = 'favoritos'">Favoritos ({{ favorites.length }})</button>
+  </div>
+</div>
+
 <ul>
-  @for (game of userGames(); track game.id) {
-    <li>{{ game.name }}</li>
+  @for (game of getGames(); track game.id) {
+    <li class="card" [class.mine]="myGames.includes(game.id)">
+      <button class="star" [class.on]="favorites.includes(game.id)" (click)="fav(game)">
+        {{ favorites.includes(game.id) ? '★' : '☆' }}
+      </button>
+      <span class="emoji">{{ game.emoji }}</span>
+      <h4>{{ game.name }}</h4>
+      <p>{{ game.genre }} · {{ game.players }} jugadores</p>
+      <button class="add" [class.added]="myGames.includes(game.id)" (click)="addGame(game)">
+        {{ myGames.includes(game.id) ? '✓ Añadido' : '+ Añadir' }}
+      </button>
+    </li>
   } @empty {
-    <li>Este usuario no tiene juegos.</li>
+    <li class="empty">No hay juegos aquí todavía.</li>
   }
 </ul>
